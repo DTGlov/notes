@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5500/notes';
+const url = 'https://notes-backend-deploy.onrender.com/notes';
 
 export const fetchNotes = () => axios.get(url);
 export const createNote = (newPost) => axios.post(url, newPost);

@@ -17,7 +17,7 @@ export default function Form() {
   });
 
   const dispatch = useDispatch();
-  const isInvalid = noteData.body.trim() === '' || noteData.body.trim() === '';
+  const isInvalid = noteData.body.trim() === '' || noteData.title.trim() === '';
 
   useEffect(() => {
     if (note) setNoteData(note);
