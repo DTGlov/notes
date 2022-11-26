@@ -4,7 +4,7 @@ import Notes from '../models/notes.schema.js';
 //fetching all notes
 export const getNotes = async (req, res) => {
   try {
-    const notes = await Notes.find();
+    const notes = await Notes.find({}).sort({ _id: -1 }).exec();
     res.status(200).json({
       message: 'Notes Fetched Successfully',
       data: { notes },
@@ -19,16 +19,19 @@ export const getNotes = async (req, res) => {
 //creating the post
 export const createNote = async (req, res) => {
   const { title, body } = req.body;
+  const titleToUpperCase = title.toUpperCase();
 
   try {
-    const findExistingNoteWithTitle = await Notes.findOne({ title });
+    const findExistingNoteWithTitle = await Notes.findOne({
+      title: titleToUpperCase,
+    });
     if (findExistingNoteWithTitle)
       return res.status(400).json({
-        message: `Note with Title ${title} already exists.Please use another title`,
+        message: `Note with title already exists.Please use another title.`,
       });
 
     const note = await Notes.create({
-      title,
+      title: titleToUpperCase,
       body,
     });
     res.status(200).json({
