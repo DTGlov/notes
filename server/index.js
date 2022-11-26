@@ -3,11 +3,19 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+import notesRoutes from './routes/notes.routes.js';
+
 const app = express();
 dotenv.config();
 
 app.use(express.json());
 app.use(cors());
+
+app.use('/notes', notesRoutes);
+
+app.get('/', (req, res) => {
+  res.send('Notes API');
+});
 
 //using mongodb cloud atlas
 //get your atlas connection_url from https://cloud.mongodb.com

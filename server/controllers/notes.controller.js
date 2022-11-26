@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Notes from '../models/notes.schema';
+import Notes from '../models/notes.schema.js';
 
 //fetching all notes
 export const getNotes = async (req, res) => {
@@ -69,6 +69,7 @@ export const updateNote = async (req, res) => {
 //deleting a note
 export const deleteNote = async (req, res) => {
   const { id } = req.params;
+
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).json({
       message: 'Note does not exist',
