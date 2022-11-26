@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { getNotes } from './actions/notesActions';
 import HomePage from './pages/HomePage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const CurrentContext = React.createContext();
 export const SetContext = React.createContext();
@@ -17,8 +19,9 @@ function App() {
     <Router>
       <CurrentContext.Provider value={currentId}>
         <SetContext.Provider value={setCurrentId}>
+          <ToastContainer />
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route exact path="/" element={<HomePage />} />
           </Routes>
         </SetContext.Provider>
       </CurrentContext.Provider>

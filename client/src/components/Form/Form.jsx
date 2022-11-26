@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createNote, updateNote } from '../../api/notesApi';
+import { createNote, updateNote } from '../../actions/notesActions';
 import { CurrentContext, SetContext } from '../../App';
 
 export default function Form() {
@@ -8,7 +8,7 @@ export default function Form() {
   const setCurrentId = useContext(SetContext);
 
   const note = useSelector((state) =>
-    currentId ? state.notesReducer.find((p) => p._id === currentId) : null
+    currentId ? state.notesReducer.find((note) => note._id === currentId) : null
   ); // return only updated posts
 
   const [noteData, setNoteData] = useState({
@@ -23,7 +23,7 @@ export default function Form() {
     if (note) setNoteData(note);
   }, [note]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (currentId) {
       dispatch(updateNote(currentId, noteData));
@@ -42,7 +42,7 @@ export default function Form() {
   };
 
   return (
-    <div className="col-span-1 bg-blue-400">
+    <div className="col-span-1 bg-black self-start rounded-md">
       <div className="flex flex-col card w-full p-3 rounded-lg">
         <h1 className="text-center tag font-bold">
           {currentId ? 'Editing' : 'Create'} a Note

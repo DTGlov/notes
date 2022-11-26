@@ -3,15 +3,15 @@ import { FETCH_ALL, DELETE, CREATE, UPDATE } from '../constants/actionTypes';
 const reducer = (notes = [], action) => {
   switch (action.type) {
     case DELETE:
-      return notes.filter((post) => post._id !== action.payload);
+      return notes.filter((note) => note._id !== action.payload);
     case UPDATE:
-      return notes.map((post) =>
-        post._id === action.payload._id ? action.payload : post
+      return notes.map((note) =>
+        note._id === action.payload._id ? action.payload : note
       );
     case FETCH_ALL:
       return action.payload;
     case CREATE:
-      return [...notes, action.payload];
+      return [action.payload, ...notes];
     default:
       return notes;
   }

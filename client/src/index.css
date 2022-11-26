@@ -7,7 +7,8 @@
 
 @layer base{
   body{
-      @apply bg-[url('/src/assets/sun-tornado.svg')] bg-cover;
+      /* @apply bg-[url('/src/assets/sun-tornado.svg')] bg-cover; */
+      @apply bg-[url('/src/assets/confetti-doodles.svg')] bg-cover;
   }
 }
 
